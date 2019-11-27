@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path')
 
 
 
@@ -15,6 +16,9 @@ app.use(bodyParser.json())
 
 // Routes
 app.use(require('./routes/index'));
+
+//Habilitar carpeta Public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 
 mongoose.connect(process.env.URLBD, { useNewUrlParser: true, useCreateIndex: true }, (err, res) => {
